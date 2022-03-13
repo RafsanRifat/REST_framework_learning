@@ -16,29 +16,57 @@
 </head>
 <body>
 
-<div class="container pt-5">
-    <h3>Your data is here :</h3>
-    <div id="data-wrapper">
+<div class="container pt-5 d-flex space-between justify-content-between">
+    <div class="data-wrapper">
+        <h3>Get Your data is here :</h3>
+        <div id="data-wrapper">
 
+        </div>
+    </div>
+    <div class="form-wrapper">
+        <h3 class="pb-3">Put your data here:</h3>
+        <div class="form-data">
+            <form id="data-form">
+                {% csrf_token %}
+                <input id="name" placeholder="Your name" type="text">
+                <input id="age" placeholder="Your age" type="text">
+                <input type="submit" class="btn btn-primary btn-sm">
+            </form>
+        </div>
     </div>
 </div>
 
 <!-- Ajax get -->
 <script>
     $(document).ready(function () {
-        $.ajax({
-            url: 'http://localhost:8000/api/firstapp/first/',
-            dataType: 'JSON',
-            success: function (data) {
-                console.log(data)
-                var name = '<p>' + data.name + '</p>';
-                var varsity = '<p>' + data.varsity + '</p>';
-                $('#data-wrapper').append(name)
-                $('#data-wrapper').append(varsity)
+        $('#data-form').submit(function (e) {
+            e.preventDefault();
+
+            var data = {
+                name: $('#name').val(),
+                age: $('#age').val(),
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
             }
+
+            $.ajax({
+                url: 'http://localhost:8000/api/firstapp/first/',
+                data: data,
+                dataType: 'JSON',
+                type: 'POST',
+                success: function (data) {
+                    console.log(data)
+                    var test = '<ul><li>' + data.name + '</li><li>' + data.age + '</li></ul>'
+                    $('#data-wrapper').append(test)
+                }
+            })
         })
     })
 </script>
 
+<!--Ajax post-->
+
+<script>
+
+</script>
 </body>
 </html>

@@ -14,8 +14,9 @@ def firstAPI(request):
         name = request.data['name']
         age = request.data['age']
         return Response({'name': name, 'age': age})
-    context = {
-        'name': 'Testname',
-        'varsity': 'TestVarsity'
-    }
+    else:
+        context = {
+            'name': 'Default Name',
+            'age': 500
+        }
     return Response(context)

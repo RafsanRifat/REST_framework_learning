@@ -46,6 +46,7 @@ def registrstionAPI(request):
             user.last_name = last_name
             user.email = email
             user.is_active = True
+            user.is_staff = True
             user.set_password(raw_password=password1)
             user.save()
             return Response({'success': 'User is created successfully'})

@@ -18,7 +18,7 @@
 
 <div class="container pt-5 d-flex space-between justify-content-between">
     <div class="data-wrapper">
-        <h3>Get Your data is here :</h3>
+        <h3>Get Your data here :</h3>
         <div id="data-wrapper">
 
         </div>
@@ -26,10 +26,10 @@
     <div class="form-wrapper">
         <h3 class="pb-3">Put your data here:</h3>
         <div class="form-data">
-            <form id="data-form">
+            <form id="data-form" class="d-flex">
                 {% csrf_token %}
-                <input id="name" placeholder="Your name" type="text">
-                <input id="age" placeholder="Your age" type="text">
+                <input style="margin-right: 5px" id="name" placeholder="Your name" type="text">
+                <input style="margin-right: 5px" id="age" placeholder="Your age" type="text">
                 <input type="submit" class="btn btn-primary btn-sm">
             </form>
         </div>

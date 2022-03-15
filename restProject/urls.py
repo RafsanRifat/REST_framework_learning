@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('api/', include('rest_framework.urls')),
-    path('api/api-login/', obtain_auth_token),
+    path('api/api-refresh_token/', TokenRefreshView.as_view()),
+    path('api/api-login_token/', TokenObtainPairView.as_view()),
     path('api/firstapp/', include('firstapp.urls')),
 ]

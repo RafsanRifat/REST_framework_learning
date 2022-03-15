@@ -28,8 +28,8 @@
         <div class="form-data">
             <form id="data-form" class="d-flex">
                 {% csrf_token %}
-                <input style="margin-right: 5px" id="name" placeholder="Your name" type="text">
-                <input style="margin-right: 5px" id="age" placeholder="Your age" type="text">
+                <input style="margin-right: 5px" id="name" placeholder="Your name" type="text" required>
+                <input style="margin-right: 5px" id="age" placeholder="Your age" type="text" required>
                 <input type="submit" class="btn btn-primary btn-sm">
             </form>
         </div>

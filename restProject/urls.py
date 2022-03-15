@@ -18,6 +18,7 @@ from django.urls import path, include
 from firstapp.views import home
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 urlpatterns = [
     path('admin/', admin.site.urls),

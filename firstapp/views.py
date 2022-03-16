@@ -6,6 +6,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from .models import Contact
 from rest_framework.views import APIView
+from rest_framework import serializers
+from .serializer import ContactSerializer
 
 
 def home(request):
@@ -59,18 +61,22 @@ def registrstionAPI(request):
 
 # @permission_classes([AllowAny])
 class ContactAPIView(APIView):
+    serializer_class = ContactSerializer
     def post(self, request, format=None):
         data = request.data
-        email = request.data['email']
-        name = request.data['name']
-        phone = request.data['phone']
-        subject = request.data['subject']
-        details = request.data['details']
+        # email = request.data['email']
+        # name = request.data['name']
+        # phone = request.data['phone']
+        # subject = request.data['subject']
+        # details = request.data['details']
 
-        contact = Contact(name=name, email=email, phone=phone, subject=subject, details=details)
+        # contact = Contact(name=name, email=email, phone=phone, subject=subject, details=details)
+        # contact.save()
 
-        contact.save()
-        return Response({'success': 'successfully saved your data'})
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(serializer.data)
 
     def get(self, request, format=None):
         return Response({'message:': 'get request working'})
